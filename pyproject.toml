@@ -1,0 +1,41 @@
+[project]
+name = "portcullis"
+version = "0.0.1"
+description = "The gate that drops: a runtime security policy gateway enforcing the lethal-trifecta / Rule-of-Two constraint on AI-agent tool calls."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+authors = [{ name = "mavrekc" }]
+dependencies = [
+    "pydantic>=2.7",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+    "mypy",
+    "pre-commit",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/portcullis"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
